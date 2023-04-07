@@ -63,16 +63,14 @@ const fetchNews = async (
         }),
       }
     );
-    console.log({ res, MEDIASTACK_API_KEY: process.env.MEDIASTACK_API_KEY });
-    const newsResponse: NewsResponse = await res.json();
-    const news = sortNewsByImage(newsResponse);
+    console.log({ res });
+    const newsResponse = await res.json();
+    console.log({ newsResponse });
+    const news = sortNewsByImage(newsResponse.data.myQuery);
+    console.log({ news });
     return news;
   } catch (e) {
     console.log({ e });
   }
-  console.log("Loading new data from API for categories", category, keywords);
-  //sort by images vs not images present
-  // return result
-  // return [];
 };
 export default fetchNews;
